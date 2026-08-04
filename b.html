@@ -228,6 +228,49 @@ h1.hero-title .ai{color:var(--indigo)}
   background:var(--bg-soft);border-radius:8px;padding:5px 12px;
 }
 
+/* ---------- dark section (services) ---------- */
+.sec-dark{background:var(--ink);color:#fff;position:relative;overflow:hidden}
+.sec-dark .sec-title{color:#fff}
+.sec-dark .sec-desc{color:rgba(255,255,255,.62)}
+.sec-dark .sec-en{color:#9CC4F8}
+.sec-dark .sec-en .mk::after{mix-blend-mode:normal}
+.sec-dark .svc-card{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1)}
+.sec-dark .svc-card:hover{border-color:rgba(125,178,245,.5);box-shadow:0 24px 50px rgba(0,0,0,.42)}
+.sec-dark .svc-name{color:#fff}
+.sec-dark .svc-name small{color:#9CC4F8}
+.sec-dark .svc-body{color:rgba(255,255,255,.66)}
+.sec-dark .svc-num{color:rgba(255,255,255,.38)}
+.sec-dark .svc-icon{background:rgba(125,178,245,.16)}
+.sec-dark .svc-icon svg{stroke:#9CC4F8}
+.sec-dark .svc-icon::after{opacity:.3}
+.sec-dark .tag{background:rgba(255,255,255,.08);color:rgba(255,255,255,.72)}
+.sec-dark .dk-glow{
+  position:absolute;left:-14vw;top:-30vh;width:52vw;height:52vw;border-radius:50%;
+  background:radial-gradient(circle,rgba(79,85,240,.28) 0%,rgba(13,27,46,0) 62%);
+  pointer-events:none;
+}
+
+/* ---------- reason (選ばれる理由) ---------- */
+.reason-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3.5vw,52px)}
+.reason{position:relative;padding-top:26px}
+.reason .num{
+  position:relative;height:76px;margin-bottom:18px;
+}
+.reason .num b{
+  font-family:var(--en);font-weight:800;font-size:72px;line-height:1;
+  color:transparent;-webkit-text-stroke:2px rgba(79,85,240,.4);
+  letter-spacing:.02em;
+}
+.reason .num::after{
+  content:"";position:absolute;left:44px;bottom:4px;width:22px;height:22px;
+  border-radius:8px;background:#7DB2F5;opacity:.55;transform:rotate(14deg);
+}
+.reason h3{
+  font-size:clamp(18px,1.6vw,21px);font-weight:900;line-height:1.7;letter-spacing:.02em;
+}
+.reason h3 .u{background:linear-gradient(transparent 68%,var(--indigo-pale) 68%)}
+.reason p{margin-top:12px;font-size:14px;color:var(--ink-soft)}
+
 /* ---------- message ---------- */
 .msg-grid{
   display:grid;grid-template-columns:.95fr 1.5fr;gap:clamp(30px,5vw,70px);align-items:start;
@@ -344,6 +387,7 @@ footer{padding:56px 0 42px;border-top:1px solid var(--line)}
   .msg-grid,.company-grid,.contact-inner{grid-template-columns:1fr}
   .hero-bg .squares{width:52vw;right:-14vw;top:24%;opacity:.55}
   .msg-photo{max-width:400px}
+  .reason-grid{grid-template-columns:1fr;max-width:520px;gap:34px}
 }
 @media (max-width:720px){
   nav.gnav a.nlink{display:none}
@@ -391,7 +435,8 @@ footer{padding:56px 0 42px;border-top:1px solid var(--line)}
   </section>
 
   <!-- ================= SERVICES ================= -->
-  <section id="services" class="sec sec-soft">
+  <section id="services" class="sec sec-dark">
+    <div class="dk-glow" aria-hidden="true"></div>
     <div class="wrap">
       <div class="sec-head rv">
         <p class="sec-en"><span class="mk" aria-hidden="true"></span>Services</p>
@@ -436,8 +481,35 @@ footer{padding:56px 0 42px;border-top:1px solid var(--line)}
     </div>
   </section>
 
+  <!-- ================= REASON ================= -->
+  <section id="reason" class="sec">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <p class="sec-en"><span class="mk" aria-hidden="true"></span>Why ECHOOZ</p>
+        <h2 class="sec-title">選ばれる理由</h2>
+      </div>
+      <div class="reason-grid">
+        <div class="reason rv">
+          <div class="num" aria-hidden="true"><b>01</b></div>
+          <h3>自社メディアを運営する<br><span class="u">「実践者」</span>である</h3>
+          <p>ブログ・Instagram・YouTube。ECHOOZ自身が日々メディアを運営し、AIを使い倒しています。机上の理論ではなく、現場の実データから戦略を組み立てます。</p>
+        </div>
+        <div class="reason rv rv-d1">
+          <div class="num" aria-hidden="true"><b>02</b></div>
+          <h3>個人から企業まで、<br><span class="u">伴走の幅</span>が広い</h3>
+          <p>副業を始めたばかりの個人から、AI活用を進める企業まで。相手の現在地に合わせて、無理のない“ちょうどいい一歩”を一緒に設計します。</p>
+        </div>
+        <div class="reason rv rv-d2">
+          <div class="num" aria-hidden="true"><b>03</b></div>
+          <h3>難しいことを<br><span class="u">「わかりやすく」</span>伝える</h3>
+          <p>AIスクールの講師として、初心者の方に日々教えています。専門用語を並べず、実行できる形に落とし込んで伝えるのが得意です。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ================= MESSAGE ================= -->
-  <section id="message" class="sec">
+  <section id="message" class="sec sec-soft">
     <div class="wrap">
       <div class="sec-head rv">
         <p class="sec-en"><span class="mk" aria-hidden="true"></span>Message</p>
@@ -467,7 +539,7 @@ footer{padding:56px 0 42px;border-top:1px solid var(--line)}
   </section>
 
   <!-- ================= COMPANY ================= -->
-  <section id="company" class="sec sec-soft">
+  <section id="company" class="sec">
     <div class="wrap">
       <div class="sec-head rv">
         <p class="sec-en"><span class="mk" aria-hidden="true"></span>Company</p>
@@ -497,8 +569,8 @@ footer{padding:56px 0 42px;border-top:1px solid var(--line)}
     <div class="sq-deco" aria-hidden="true"><i></i><i></i><i></i></div>
     <div class="wrap contact-inner">
       <div class="rv">
-        <h2>まずは、気軽に<br>話してみませんか。</h2>
-        <p class="lead">サービスに関するご質問やご相談など、お気軽にお問い合わせください。</p>
+        <h2>その課題、<br>AIとWebで解けるかもしれません。</h2>
+        <p class="lead">「何から相談すればいいか分からない」段階でも大丈夫です。現在地を伺うところから始めます。</p>
       </div>
       <div class="contact-box rv rv-d1">
         <a class="btn-fill" href="https://echooz.jp/contact/">お問い合わせフォームへ <span class="arr" aria-hidden="true">→</span></a>
