@@ -11,14 +11,14 @@
 <style>
 :root{
   --bg:#FFFFFF;
-  --bg-soft:#F5F7FA;
-  --ink:#0D1B2E;
-  --ink-soft:#46566B;
-  --muted:#8A97A8;
-  --line:rgba(13,27,46,.1);
-  --indigo:#4F55F0;
-  --indigo-deep:#3A3FD9;
-  --indigo-pale:#EEEFFE;
+  --bg-soft:#F4F8F7;
+  --ink:#0A1E26;
+  --ink-soft:#415860;
+  --muted:#87999F;
+  --line:rgba(10,30,38,.1);
+  --teal:#0AA08E;
+  --teal-deep:#067A6C;
+  --teal-pale:#E1F4F0;
   --sans:"Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;
   --en:"Inter","Noto Sans JP",sans-serif;
 }
@@ -31,9 +31,12 @@ body{
   overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
 }
-::selection{background:var(--indigo);color:#fff}
+::selection{background:var(--teal);color:#fff}
 a{color:inherit;text-decoration:none}
 .wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+
+/* ---------- echo mark (brand) ---------- */
+.echo-mark{display:inline-block;flex:none}
 
 /* ---------- header ---------- */
 header{
@@ -52,12 +55,6 @@ header.scrolled{box-shadow:0 1px 0 var(--line)}
   font-family:var(--en);font-weight:800;font-size:20px;letter-spacing:.04em;
   display:flex;align-items:center;gap:10px;
 }
-.brand .mark{width:26px;height:26px;flex:none;position:relative}
-.brand .mark::before,.brand .mark::after{
-  content:"";position:absolute;width:16px;height:16px;border-radius:5px;
-}
-.brand .mark::before{left:0;top:0;background:var(--indigo);opacity:.9}
-.brand .mark::after{right:0;bottom:0;background:#7DB2F5;opacity:.85}
 nav.gnav{display:flex;align-items:center;gap:clamp(16px,2.6vw,30px);flex:1}
 nav.gnav a.nlink{
   font-size:13.5px;font-weight:700;letter-spacing:.03em;color:var(--ink);
@@ -65,19 +62,19 @@ nav.gnav a.nlink{
 }
 nav.gnav a.nlink::after{
   content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;border-radius:2px;
-  background:var(--indigo);transform:scaleX(0);transform-origin:right;
+  background:var(--teal);transform:scaleX(0);transform-origin:right;
   transition:transform .3s cubic-bezier(.7,0,.2,1);
 }
 nav.gnav a.nlink:hover::after{transform:scaleX(1);transform-origin:left}
 .btn-nav{
   margin-left:auto;
   font-size:13.5px;font-weight:700;letter-spacing:.03em;color:#fff;
-  background:var(--indigo);
+  background:var(--teal);
   padding:11px 26px;border-radius:999px;
   transition:background .3s,transform .3s,box-shadow .3s;
-  box-shadow:0 6px 18px rgba(79,85,240,.28);
+  box-shadow:0 6px 18px rgba(10,160,142,.28);
 }
-.btn-nav:hover{background:var(--indigo-deep);transform:translateY(-1px)}
+.btn-nav:hover{background:var(--teal-deep);transform:translateY(-1px)}
 
 /* ---------- hero ---------- */
 .hero{
@@ -86,36 +83,44 @@ nav.gnav a.nlink:hover::after{transform:scaleX(1);transform-origin:left}
   overflow:hidden;
 }
 .hero-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-.hero-bg .grad{
-  position:absolute;right:-22vw;top:-30vh;width:70vw;height:70vw;border-radius:50%;
-  background:radial-gradient(circle,rgba(125,178,245,.16) 0%,rgba(79,85,240,.08) 40%,rgba(255,255,255,0) 68%);
+/* echo ripple rings emanating from right */
+.ripples{
+  position:absolute;right:clamp(-140px,-6vw,-60px);top:50%;transform:translateY(-50%);
+  width:clamp(420px,44vw,700px);height:clamp(420px,44vw,700px);
 }
-.hero-bg .grad2{
-  position:absolute;left:-24vw;bottom:-38vh;width:60vw;height:60vw;border-radius:50%;
-  background:radial-gradient(circle,rgba(79,85,240,.07) 0%,rgba(255,255,255,0) 62%);
+.ripples i{
+  position:absolute;inset:0;border-radius:50%;
+  border:1.5px solid rgba(10,160,142,.22);
+  animation:rippleout 7s cubic-bezier(.2,.5,.4,1) infinite;
 }
-.hero-bg .layers{
-  position:absolute;right:clamp(20px,8vw,140px);bottom:16vh;
-  width:clamp(200px,24vw,340px);height:clamp(200px,24vw,340px);
-  transform:rotate(-8deg);
+.ripples i:nth-child(2){animation-delay:1.75s}
+.ripples i:nth-child(3){animation-delay:3.5s}
+.ripples i:nth-child(4){animation-delay:5.25s}
+@keyframes rippleout{
+  0%{transform:scale(.3);opacity:0}
+  18%{opacity:.9}
+  100%{transform:scale(1.06);opacity:0}
 }
-.hero-bg .layers i{
-  position:absolute;left:0;right:0;height:26%;border-radius:18px;
-  background:linear-gradient(120deg,rgba(79,85,240,.1),rgba(125,178,245,.12));
-  border:1px solid rgba(79,85,240,.14);
-  animation:layerfloat 6s ease-in-out infinite;
+.ripples .center{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:14px;height:14px;border-radius:50%;background:var(--teal);
+  box-shadow:0 0 0 10px rgba(10,160,142,.14),0 0 0 22px rgba(10,160,142,.06);
+  animation:pulse 3.5s ease infinite;
 }
-.hero-bg .layers i:nth-child(1){top:0;animation-delay:0s}
-.hero-bg .layers i:nth-child(2){top:33%;animation-delay:.6s}
-.hero-bg .layers i:nth-child(3){top:66%;animation-delay:1.2s}
-@keyframes layerfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 10px rgba(10,160,142,.14),0 0 0 22px rgba(10,160,142,.06)}50%{box-shadow:0 0 0 14px rgba(10,160,142,.18),0 0 0 30px rgba(10,160,142,.08)}}
+.hero-bg .wash{
+  position:absolute;left:-24vw;bottom:-40vh;width:60vw;height:60vw;border-radius:50%;
+  background:radial-gradient(circle,rgba(10,160,142,.06) 0%,rgba(255,255,255,0) 62%);
+}
 .hero-inner{position:relative;width:100%;padding:150px 0 110px}
 .hero-eyebrow{
   display:inline-flex;align-items:center;gap:10px;
-  font-size:12.5px;font-weight:700;letter-spacing:.06em;color:var(--indigo);
-  background:var(--indigo-pale);border-radius:999px;padding:8px 18px;
+  font-size:12.5px;font-weight:700;letter-spacing:.06em;color:var(--teal-deep);
+  background:var(--teal-pale);border-radius:999px;padding:8px 18px;
   margin-bottom:34px;
 }
+.hero-eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--teal);animation:blink 2.4s ease infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 h1.hero-title{
   font-weight:900;
   font-size:clamp(40px,7vw,92px);
@@ -124,8 +129,15 @@ h1.hero-title{
 h1.hero-title .line{display:block;overflow:hidden}
 h1.hero-title .line span{display:inline-block;transform:translateY(110%);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
 h1.hero-title .line:nth-child(2) span{animation-delay:.12s}
-h1.hero-title .ai{color:var(--indigo)}
 @keyframes rise{to{transform:translateY(0)}}
+h1.hero-title .mugen{
+  color:var(--teal);position:relative;white-space:nowrap;
+}
+h1.hero-title .mugen::after{
+  content:"";position:absolute;left:2%;right:2%;bottom:.04em;height:.14em;border-radius:99px;
+  background:linear-gradient(90deg,rgba(10,160,142,.35),rgba(10,160,142,.08));
+  z-index:-1;
+}
 .hero-lead{
   margin-top:34px;max-width:560px;
   font-size:clamp(14.5px,1.4vw,16.5px);color:var(--ink-soft);line-height:2.2;
@@ -134,18 +146,18 @@ h1.hero-title .ai{color:var(--indigo)}
 .hero-cta{margin-top:44px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
 .btn-fill{
   font-size:14.5px;font-weight:700;letter-spacing:.03em;color:#fff;
-  background:var(--indigo);
+  background:var(--teal);
   padding:17px 40px;border-radius:999px;
   display:inline-flex;align-items:center;gap:10px;
-  box-shadow:0 10px 26px rgba(79,85,240,.32);
+  box-shadow:0 10px 26px rgba(10,160,142,.32);
   transition:background .3s,transform .3s,box-shadow .3s;
 }
-.btn-fill:hover{background:var(--indigo-deep);transform:translateY(-2px);box-shadow:0 16px 34px rgba(79,85,240,.4)}
+.btn-fill:hover{background:var(--teal-deep);transform:translateY(-2px);box-shadow:0 16px 34px rgba(10,160,142,.4)}
 .btn-fill .arr{transition:transform .3s}
 .btn-fill:hover .arr{transform:translateX(4px)}
 .btn-ghost{
   font-size:14.5px;font-weight:700;letter-spacing:.03em;color:var(--ink);
-  padding:16px 34px;border-radius:999px;border:1.5px solid rgba(13,27,46,.2);
+  padding:16px 34px;border-radius:999px;border:1.5px solid rgba(10,30,38,.2);
   transition:border-color .3s,background .3s;
 }
 .btn-ghost:hover{border-color:var(--ink);background:var(--bg-soft)}
@@ -156,9 +168,13 @@ h1.hero-title .ai{color:var(--indigo)}
 .sec-head{margin-bottom:clamp(44px,6vw,72px)}
 .sec-en{
   font-family:var(--en);font-weight:700;font-size:13px;letter-spacing:.14em;
-  color:var(--indigo);text-transform:uppercase;display:flex;align-items:center;gap:12px;
+  color:var(--teal-deep);text-transform:uppercase;display:flex;align-items:center;gap:12px;
 }
-.sec-en::before{content:"";width:22px;height:2px;border-radius:2px;background:var(--indigo)}
+.sec-en .waves{display:inline-flex;align-items:center;gap:3px}
+.sec-en .waves i{width:3px;border-radius:3px;background:var(--teal)}
+.sec-en .waves i:nth-child(1){height:6px}
+.sec-en .waves i:nth-child(2){height:12px}
+.sec-en .waves i:nth-child(3){height:8px}
 .sec-title{
   margin-top:14px;
   font-size:clamp(28px,4vw,46px);font-weight:900;letter-spacing:.02em;line-height:1.5;
@@ -168,26 +184,38 @@ h1.hero-title .ai{color:var(--indigo)}
 /* ---------- services ---------- */
 .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,26px)}
 .svc-card{
+  position:relative;
   background:var(--bg);border:1px solid var(--line);border-radius:20px;
   padding:clamp(28px,3vw,40px) clamp(22px,2.4vw,32px);
   display:flex;flex-direction:column;gap:16px;
   transition:transform .35s,box-shadow .35s,border-color .35s;
+  overflow:hidden;
+}
+.svc-card::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:4px;
+  background:linear-gradient(180deg,var(--teal),rgba(10,160,142,.2));
+  opacity:0;transition:opacity .35s;
 }
 .svc-card:hover{
-  transform:translateY(-5px);border-color:rgba(79,85,240,.35);
-  box-shadow:0 24px 50px rgba(13,27,46,.1);
+  transform:translateY(-5px);border-color:rgba(10,160,142,.35);
+  box-shadow:0 24px 50px rgba(10,30,38,.1);
 }
+.svc-card:hover::before{opacity:1}
 .svc-top{display:flex;align-items:center;justify-content:space-between}
 .svc-icon{
-  width:50px;height:50px;border-radius:14px;background:var(--indigo-pale);
-  display:flex;align-items:center;justify-content:center;
+  width:52px;height:52px;border-radius:50%;background:var(--teal-pale);
+  display:flex;align-items:center;justify-content:center;position:relative;
 }
-.svc-icon svg{width:24px;height:24px;stroke:var(--indigo);stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.svc-icon::after{
+  content:"";position:absolute;inset:-6px;border-radius:50%;
+  border:1px solid rgba(10,160,142,.25);
+}
+.svc-icon svg{width:24px;height:24px;stroke:var(--teal-deep);stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .svc-num{font-family:var(--en);font-weight:700;font-size:13px;letter-spacing:.1em;color:var(--muted)}
 .svc-name{font-size:19.5px;font-weight:900;letter-spacing:.02em;line-height:1.6}
 .svc-name small{
   display:block;font-family:var(--en);font-weight:600;font-size:10.5px;
-  letter-spacing:.16em;color:var(--indigo);margin-top:6px;text-transform:uppercase;
+  letter-spacing:.16em;color:var(--teal-deep);margin-top:6px;text-transform:uppercase;
 }
 .svc-body{font-size:14px;color:var(--ink-soft);flex:1}
 .svc-tags{display:flex;flex-wrap:wrap;gap:8px}
@@ -195,6 +223,7 @@ h1.hero-title .ai{color:var(--indigo)}
   font-size:11.5px;font-weight:700;letter-spacing:.03em;color:var(--ink-soft);
   background:var(--bg-soft);border-radius:8px;padding:5px 12px;
 }
+.sec-soft .tag{background:#fff;border:1px solid var(--line)}
 
 /* ---------- message ---------- */
 .msg-grid{
@@ -202,20 +231,25 @@ h1.hero-title .ai{color:var(--indigo)}
 }
 .msg-quote{
   font-size:clamp(24px,3vw,36px);font-weight:900;line-height:1.8;letter-spacing:.02em;
-  position:relative;padding-top:26px;
+  position:relative;padding-top:30px;
 }
 .msg-quote::before{
-  content:"";position:absolute;top:0;left:0;width:44px;height:4px;border-radius:3px;
-  background:var(--indigo);
+  content:"";position:absolute;top:0;left:0;width:64px;height:8px;
+  background:
+    radial-gradient(circle at 4px 4px, var(--teal) 3px, transparent 3.5px),
+    radial-gradient(circle at 20px 4px, rgba(10,160,142,.6) 3px, transparent 3.5px),
+    radial-gradient(circle at 36px 4px, rgba(10,160,142,.35) 3px, transparent 3.5px),
+    radial-gradient(circle at 52px 4px, rgba(10,160,142,.18) 3px, transparent 3.5px);
 }
 .msg-body{font-size:15px;color:var(--ink-soft);line-height:2.3}
 .msg-body p+p{margin-top:1.5em}
 .msg-sign{margin-top:34px;display:flex;align-items:center;gap:16px}
 .msg-sign .avatar{
   width:56px;height:56px;border-radius:50%;flex:none;
-  background:linear-gradient(135deg,var(--indigo),#7DB2F5);
+  background:radial-gradient(circle at 34% 30%,#12C4AE,var(--teal-deep));
   display:flex;align-items:center;justify-content:center;
   color:#fff;font-weight:900;font-size:20px;
+  box-shadow:0 0 0 6px rgba(10,160,142,.12);
 }
 .msg-sign .role{font-size:11.5px;letter-spacing:.08em;color:var(--muted);font-weight:700}
 .msg-sign .name{font-size:19px;font-weight:900;letter-spacing:.1em}
@@ -233,26 +267,33 @@ dl.company dt{
 }
 dl.company dd{font-size:15px;font-weight:500}
 dl.company dd .sub{display:block;font-size:12.5px;color:var(--muted);font-weight:400}
-dl.company dd a{border-bottom:1px solid rgba(13,27,46,.3);transition:color .3s,border-color .3s}
-dl.company dd a:hover{color:var(--indigo);border-color:var(--indigo)}
+dl.company dd a{border-bottom:1px solid rgba(10,30,38,.3);transition:color .3s,border-color .3s}
+dl.company dd a:hover{color:var(--teal-deep);border-color:var(--teal-deep)}
 .company-note p{font-size:14.5px;color:var(--ink-soft)}
 .map-chip{
   margin-top:22px;display:inline-flex;align-items:center;gap:9px;
-  font-size:12.5px;font-weight:700;color:var(--indigo);
-  background:var(--indigo-pale);border-radius:999px;padding:8px 18px;
+  font-size:12.5px;font-weight:700;color:var(--teal-deep);
+  background:var(--teal-pale);border-radius:999px;padding:8px 18px;
 }
 
 /* ---------- contact ---------- */
 .contact{
   background:var(--ink);color:#fff;overflow:hidden;position:relative;
 }
-.contact .glow{
-  position:absolute;right:-16vw;top:-30vh;width:56vw;height:56vw;border-radius:50%;
-  background:radial-gradient(circle,rgba(79,85,240,.35) 0%,rgba(13,27,46,0) 62%);
-  pointer-events:none;
+.contact .rings{
+  position:absolute;right:-180px;top:50%;transform:translateY(-50%);
+  width:620px;height:620px;pointer-events:none;
 }
+.contact .rings i{
+  position:absolute;inset:0;border-radius:50%;
+  border:1px solid rgba(10,160,142,.35);
+}
+.contact .rings i:nth-child(2){inset:90px;border-color:rgba(10,160,142,.28)}
+.contact .rings i:nth-child(3){inset:180px;border-color:rgba(10,160,142,.2)}
+.contact .rings i:nth-child(4){inset:270px;border-color:rgba(18,196,174,.5)}
 .contact-inner{position:relative;display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(30px,5vw,70px);align-items:center}
 .contact h2{font-size:clamp(28px,4vw,46px);font-weight:900;line-height:1.6}
+.contact h2 .accent{color:#12C4AE}
 .contact .lead{margin-top:16px;font-size:14.5px;color:rgba(255,255,255,.7)}
 .contact-box{display:flex;flex-direction:column;gap:16px;align-items:flex-start}
 .contact-alt{display:flex;flex-direction:column;gap:8px;font-family:var(--en);font-size:13.5px;color:rgba(255,255,255,.75)}
@@ -264,12 +305,8 @@ dl.company dd a:hover{color:var(--indigo);border-color:var(--indigo)}
 footer{padding:56px 0 42px;border-top:1px solid var(--line)}
 .foot-top{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap;align-items:center}
 .foot-brand{font-family:var(--en);font-weight:800;font-size:18px;letter-spacing:.04em;display:flex;align-items:center;gap:10px}
-.foot-brand .mark{width:22px;height:22px;position:relative}
-.foot-brand .mark::before,.foot-brand .mark::after{content:"";position:absolute;width:13px;height:13px;border-radius:4px}
-.foot-brand .mark::before{left:0;top:0;background:var(--indigo);opacity:.9}
-.foot-brand .mark::after{right:0;bottom:0;background:#7DB2F5;opacity:.85}
 .foot-links{display:flex;gap:clamp(14px,2.6vw,28px);flex-wrap:wrap;font-size:13px;font-weight:500;color:var(--ink-soft)}
-.foot-links a:hover{color:var(--indigo)}
+.foot-links a:hover{color:var(--teal-deep)}
 .foot-copy{margin-top:26px;font-family:var(--en);font-size:11.5px;letter-spacing:.06em;color:var(--muted)}
 
 /* ---------- reveal ---------- */
@@ -288,7 +325,7 @@ footer{padding:56px 0 42px;border-top:1px solid var(--line)}
 @media (max-width:960px){
   .svc-grid{grid-template-columns:1fr;max-width:520px}
   .msg-grid,.company-grid,.contact-inner{grid-template-columns:1fr}
-  .hero-bg .layers{display:none}
+  .ripples{opacity:.45}
 }
 @media (max-width:720px){
   nav.gnav a.nlink{display:none}
@@ -301,7 +338,15 @@ footer{padding:56px 0 42px;border-top:1px solid var(--line)}
 
 <header id="header">
   <div class="header-inner">
-    <a class="brand" href="#top" aria-label="ECHOOZ トップへ"><span class="mark" aria-hidden="true"></span>ECHOOZ</a>
+    <a class="brand" href="#top" aria-label="ECHOOZ トップへ">
+      <svg class="echo-mark" width="30" height="26" viewBox="0 0 30 26" aria-hidden="true">
+        <circle cx="7" cy="13" r="3.6" fill="#0AA08E"/>
+        <path d="M13.5 6.5a9 9 0 0 1 0 13" stroke="#0AA08E" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+        <path d="M18.5 3a15 15 0 0 1 0 20" stroke="#0AA08E" stroke-width="2.2" fill="none" stroke-linecap="round" opacity=".55"/>
+        <path d="M23.5 0.5a21 21 0 0 1 0 25" stroke="#0AA08E" stroke-width="2.2" fill="none" stroke-linecap="round" opacity=".28"/>
+      </svg>
+      ECHOOZ
+    </a>
     <nav class="gnav" aria-label="グローバルナビゲーション">
       <a class="nlink" href="#services">事業内容</a>
       <a class="nlink" href="#message">代表メッセージ</a>
@@ -316,15 +361,17 @@ footer{padding:56px 0 42px;border-top:1px solid var(--line)}
   <!-- ================= HERO ================= -->
   <section class="hero">
     <div class="hero-bg" aria-hidden="true">
-      <div class="grad"></div>
-      <div class="grad2"></div>
-      <div class="layers"><i></i><i></i><i></i></div>
+      <div class="wash"></div>
+      <div class="ripples">
+        <i></i><i></i><i></i><i></i>
+        <span class="center"></span>
+      </div>
     </div>
     <div class="wrap hero-inner">
-      <p class="hero-eyebrow">AI × Web Business — Tokyo</p>
+      <p class="hero-eyebrow"><span class="dot" aria-hidden="true"></span>AI × Web Business — Tokyo</p>
       <h1 class="hero-title">
-        <span class="line"><span><span class="ai">AI</span>とWebで、</span></span>
-        <span class="line"><span>可能性を無限大に。</span></span>
+        <span class="line"><span>AIとWebで、</span></span>
+        <span class="line"><span>可能性を<span class="mugen">無限大</span>に。</span></span>
       </h1>
       <p class="hero-lead">
         株式会社ECHOOZは、生成AI活用支援・Webメディア運営・AI×Webビジネスコンサルを通じて、個人にも企業にも<b>“自走できる力”</b>を育みます。
@@ -340,7 +387,7 @@ footer{padding:56px 0 42px;border-top:1px solid var(--line)}
   <section id="services" class="sec sec-soft">
     <div class="wrap">
       <div class="sec-head rv">
-        <p class="sec-en">Services</p>
+        <p class="sec-en"><span class="waves" aria-hidden="true"><i></i><i></i><i></i></span>Services</p>
         <h2 class="sec-title">事業内容</h2>
         <p class="sec-desc">ECHOOZが提供する3つのコアサービス。AIとWebの掛け算で、収益化までを一気通貫で支援します。</p>
       </div>
@@ -386,7 +433,7 @@ footer{padding:56px 0 42px;border-top:1px solid var(--line)}
   <section id="message" class="sec">
     <div class="wrap">
       <div class="sec-head rv">
-        <p class="sec-en">Message</p>
+        <p class="sec-en"><span class="waves" aria-hidden="true"><i></i><i></i><i></i></span>Message</p>
         <h2 class="sec-title">代表メッセージ</h2>
       </div>
       <div class="msg-grid">
@@ -413,7 +460,7 @@ footer{padding:56px 0 42px;border-top:1px solid var(--line)}
   <section id="company" class="sec sec-soft">
     <div class="wrap">
       <div class="sec-head rv">
-        <p class="sec-en">Company</p>
+        <p class="sec-en"><span class="waves" aria-hidden="true"><i></i><i></i><i></i></span>Company</p>
         <h2 class="sec-title">会社概要</h2>
       </div>
       <div class="company-grid">
@@ -436,10 +483,10 @@ footer{padding:56px 0 42px;border-top:1px solid var(--line)}
 
   <!-- ================= CONTACT ================= -->
   <section id="contact" class="sec contact">
-    <div class="glow" aria-hidden="true"></div>
+    <div class="rings" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
     <div class="wrap contact-inner">
       <div class="rv">
-        <h2>まずは、気軽に<br>話してみませんか。</h2>
+        <h2>まずは、<span class="accent">気軽に</span><br>話してみませんか。</h2>
         <p class="lead">サービスに関するご質問やご相談など、お気軽にお問い合わせください。</p>
       </div>
       <div class="contact-box rv rv-d1">
@@ -457,7 +504,15 @@ footer{padding:56px 0 42px;border-top:1px solid var(--line)}
 <footer>
   <div class="wrap">
     <div class="foot-top">
-      <p class="foot-brand"><span class="mark" aria-hidden="true"></span>ECHOOZ</p>
+      <p class="foot-brand">
+        <svg class="echo-mark" width="26" height="23" viewBox="0 0 30 26" aria-hidden="true">
+          <circle cx="7" cy="13" r="3.6" fill="#0AA08E"/>
+          <path d="M13.5 6.5a9 9 0 0 1 0 13" stroke="#0AA08E" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+          <path d="M18.5 3a15 15 0 0 1 0 20" stroke="#0AA08E" stroke-width="2.2" fill="none" stroke-linecap="round" opacity=".55"/>
+          <path d="M23.5 0.5a21 21 0 0 1 0 25" stroke="#0AA08E" stroke-width="2.2" fill="none" stroke-linecap="round" opacity=".28"/>
+        </svg>
+        ECHOOZ
+      </p>
       <nav class="foot-links" aria-label="フッターナビゲーション">
         <a href="#services">事業内容</a>
         <a href="#message">代表メッセージ</a>
