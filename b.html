@@ -73,7 +73,7 @@ nav.gnav a.nlink:hover::after{transform:scaleX(1);transform-origin:left}
   margin-left:auto;
   font-size:13.5px;font-weight:700;letter-spacing:.03em;color:#fff;
   background:var(--indigo);
-  padding:11px 26px;border-radius:999px;
+  padding:11px 26px;border-radius:14px;
   transition:background .3s,transform .3s,box-shadow .3s;
   box-shadow:0 6px 18px rgba(79,85,240,.28);
 }
@@ -94,21 +94,43 @@ nav.gnav a.nlink:hover::after{transform:scaleX(1);transform-origin:left}
   position:absolute;left:-24vw;bottom:-38vh;width:60vw;height:60vw;border-radius:50%;
   background:radial-gradient(circle,rgba(79,85,240,.07) 0%,rgba(255,255,255,0) 62%);
 }
-.hero-bg .layers{
-  position:absolute;right:clamp(20px,8vw,140px);bottom:16vh;
-  width:clamp(200px,24vw,340px);height:clamp(200px,24vw,340px);
-  transform:rotate(-8deg);
+/* brand shape system: overlapping rounded squares (logo scaled up) */
+.hero-bg .squares{
+  position:absolute;right:clamp(30px,9vw,170px);top:50%;
+  width:clamp(300px,30vw,460px);height:clamp(300px,30vw,460px);
+  transform:translateY(-50%);
 }
-.hero-bg .layers i{
-  position:absolute;left:0;right:0;height:26%;border-radius:18px;
-  background:linear-gradient(120deg,rgba(79,85,240,.1),rgba(125,178,245,.12));
-  border:1px solid rgba(79,85,240,.14);
-  animation:layerfloat 6s ease-in-out infinite;
+.hero-bg .squares .sq{
+  position:absolute;border-radius:26%;
+  animation:sqfloat 7s ease-in-out infinite;
 }
-.hero-bg .layers i:nth-child(1){top:0;animation-delay:0s}
-.hero-bg .layers i:nth-child(2){top:33%;animation-delay:.6s}
-.hero-bg .layers i:nth-child(3){top:66%;animation-delay:1.2s}
-@keyframes layerfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.hero-bg .squares .sq1{
+  left:0;top:6%;width:62%;height:62%;
+  background:linear-gradient(135deg,#5A60F2,#4F55F0 55%,#3A3FD9);
+  transform:rotate(-10deg);
+  box-shadow:0 30px 70px rgba(79,85,240,.3);
+  animation-delay:0s;
+}
+.hero-bg .squares .sq2{
+  right:2%;bottom:4%;width:58%;height:58%;
+  background:linear-gradient(135deg,rgba(125,178,245,.85),rgba(125,178,245,.55));
+  transform:rotate(8deg);
+  mix-blend-mode:multiply;
+  animation-delay:.9s;
+}
+.hero-bg .squares .sq3{
+  right:16%;top:0;width:38%;height:38%;
+  background:transparent;border:2px solid rgba(79,85,240,.35);
+  transform:rotate(18deg);
+  animation-delay:1.8s;
+}
+.hero-bg .squares .sq4{
+  left:10%;bottom:0;width:22%;height:22%;
+  background:var(--indigo-pale);
+  transform:rotate(-16deg);
+  animation-delay:2.7s;
+}
+@keyframes sqfloat{0%,100%{margin-top:0}50%{margin-top:-14px}}
 .hero-inner{position:relative;width:100%;padding:150px 0 110px}
 .hero-eyebrow{
   display:inline-flex;align-items:center;gap:10px;
@@ -135,7 +157,7 @@ h1.hero-title .ai{color:var(--indigo)}
 .btn-fill{
   font-size:14.5px;font-weight:700;letter-spacing:.03em;color:#fff;
   background:var(--indigo);
-  padding:17px 40px;border-radius:999px;
+  padding:17px 40px;border-radius:16px;
   display:inline-flex;align-items:center;gap:10px;
   box-shadow:0 10px 26px rgba(79,85,240,.32);
   transition:background .3s,transform .3s,box-shadow .3s;
@@ -145,7 +167,7 @@ h1.hero-title .ai{color:var(--indigo)}
 .btn-fill:hover .arr{transform:translateX(4px)}
 .btn-ghost{
   font-size:14.5px;font-weight:700;letter-spacing:.03em;color:var(--ink);
-  padding:16px 34px;border-radius:999px;border:1.5px solid rgba(13,27,46,.2);
+  padding:16px 34px;border-radius:16px;border:1.5px solid rgba(13,27,46,.2);
   transition:border-color .3s,background .3s;
 }
 .btn-ghost:hover{border-color:var(--ink);background:var(--bg-soft)}
@@ -158,7 +180,10 @@ h1.hero-title .ai{color:var(--indigo)}
   font-family:var(--en);font-weight:700;font-size:13px;letter-spacing:.14em;
   color:var(--indigo);text-transform:uppercase;display:flex;align-items:center;gap:12px;
 }
-.sec-en::before{content:"";width:22px;height:2px;border-radius:2px;background:var(--indigo)}
+.sec-en .mk{position:relative;width:18px;height:16px;flex:none;display:inline-block}
+.sec-en .mk::before,.sec-en .mk::after{content:"";position:absolute;width:11px;height:11px;border-radius:4px}
+.sec-en .mk::before{left:0;top:0;background:var(--indigo)}
+.sec-en .mk::after{right:0;bottom:0;background:#7DB2F5;opacity:.85;mix-blend-mode:multiply}
 .sec-title{
   margin-top:14px;
   font-size:clamp(28px,4vw,46px);font-weight:900;letter-spacing:.02em;line-height:1.5;
@@ -181,7 +206,14 @@ h1.hero-title .ai{color:var(--indigo)}
 .svc-icon{
   width:50px;height:50px;border-radius:14px;background:var(--indigo-pale);
   display:flex;align-items:center;justify-content:center;
+  position:relative;
 }
+.svc-icon::after{
+  content:"";position:absolute;right:-7px;bottom:-7px;width:20px;height:20px;
+  border-radius:7px;background:#7DB2F5;opacity:.5;z-index:-1;
+  transition:transform .35s,opacity .35s;
+}
+.svc-card:hover .svc-icon::after{transform:translate(3px,3px);opacity:.8}
 .svc-icon svg{width:24px;height:24px;stroke:var(--indigo);stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .svc-num{font-family:var(--en);font-weight:700;font-size:13px;letter-spacing:.1em;color:var(--muted)}
 .svc-name{font-size:19.5px;font-weight:900;letter-spacing:.02em;line-height:1.6}
@@ -253,7 +285,7 @@ dl.company dd a:hover{color:var(--indigo);border-color:var(--indigo)}
 .map-chip{
   margin-top:22px;display:inline-flex;align-items:center;gap:9px;
   font-size:12.5px;font-weight:700;color:var(--indigo);
-  background:var(--indigo-pale);border-radius:999px;padding:8px 18px;
+  background:var(--indigo-pale);border-radius:10px;padding:8px 18px;
 }
 
 /* ---------- contact ---------- */
@@ -265,6 +297,14 @@ dl.company dd a:hover{color:var(--indigo);border-color:var(--indigo)}
   background:radial-gradient(circle,rgba(79,85,240,.35) 0%,rgba(13,27,46,0) 62%);
   pointer-events:none;
 }
+.contact .sq-deco{
+  position:absolute;right:clamp(-60px,2vw,80px);top:50%;transform:translateY(-50%) rotate(-12deg);
+  width:300px;height:300px;pointer-events:none;
+}
+.contact .sq-deco i{position:absolute;border-radius:26%}
+.contact .sq-deco i:nth-child(1){left:0;top:0;width:200px;height:200px;border:2px solid rgba(125,178,245,.35)}
+.contact .sq-deco i:nth-child(2){right:0;bottom:0;width:170px;height:170px;border:2px solid rgba(79,85,240,.5);transform:rotate(14deg)}
+.contact .sq-deco i:nth-child(3){right:36px;top:10px;width:52px;height:52px;background:rgba(125,178,245,.25);transform:rotate(20deg)}
 .contact-inner{position:relative;display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(30px,5vw,70px);align-items:center}
 .contact h2{font-size:clamp(28px,4vw,46px);font-weight:900;line-height:1.6}
 .contact .lead{margin-top:16px;font-size:14.5px;color:rgba(255,255,255,.7)}
@@ -302,7 +342,7 @@ footer{padding:56px 0 42px;border-top:1px solid var(--line)}
 @media (max-width:960px){
   .svc-grid{grid-template-columns:1fr;max-width:520px}
   .msg-grid,.company-grid,.contact-inner{grid-template-columns:1fr}
-  .hero-bg .layers{display:none}
+  .hero-bg .squares{width:52vw;right:-14vw;top:24%;opacity:.55}
   .msg-photo{max-width:400px}
 }
 @media (max-width:720px){
@@ -333,7 +373,7 @@ footer{padding:56px 0 42px;border-top:1px solid var(--line)}
     <div class="hero-bg" aria-hidden="true">
       <div class="grad"></div>
       <div class="grad2"></div>
-      <div class="layers"><i></i><i></i><i></i></div>
+      <div class="squares"><i class="sq sq1"></i><i class="sq sq2"></i><i class="sq sq3"></i><i class="sq sq4"></i></div>
     </div>
     <div class="wrap hero-inner">
       <h1 class="hero-title">
@@ -354,7 +394,7 @@ footer{padding:56px 0 42px;border-top:1px solid var(--line)}
   <section id="services" class="sec sec-soft">
     <div class="wrap">
       <div class="sec-head rv">
-        <p class="sec-en">Services</p>
+        <p class="sec-en"><span class="mk" aria-hidden="true"></span>Services</p>
         <h2 class="sec-title">事業内容</h2>
         <p class="sec-desc">ECHOOZが提供する3つのコアサービス。AIとWebの掛け算で、収益化までを一気通貫で支援します。</p>
       </div>
@@ -400,7 +440,7 @@ footer{padding:56px 0 42px;border-top:1px solid var(--line)}
   <section id="message" class="sec">
     <div class="wrap">
       <div class="sec-head rv">
-        <p class="sec-en">Message</p>
+        <p class="sec-en"><span class="mk" aria-hidden="true"></span>Message</p>
         <h2 class="sec-title">代表メッセージ</h2>
       </div>
       <div class="msg-grid">
@@ -430,7 +470,7 @@ footer{padding:56px 0 42px;border-top:1px solid var(--line)}
   <section id="company" class="sec sec-soft">
     <div class="wrap">
       <div class="sec-head rv">
-        <p class="sec-en">Company</p>
+        <p class="sec-en"><span class="mk" aria-hidden="true"></span>Company</p>
         <h2 class="sec-title">会社概要</h2>
       </div>
       <div class="company-grid">
@@ -454,6 +494,7 @@ footer{padding:56px 0 42px;border-top:1px solid var(--line)}
   <!-- ================= CONTACT ================= -->
   <section id="contact" class="sec contact">
     <div class="glow" aria-hidden="true"></div>
+    <div class="sq-deco" aria-hidden="true"><i></i><i></i><i></i></div>
     <div class="wrap contact-inner">
       <div class="rv">
         <h2>まずは、気軽に<br>話してみませんか。</h2>
