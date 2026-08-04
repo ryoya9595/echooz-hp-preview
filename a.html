@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>株式会社ECHOOZ｜AIとWebで、あなたの可能性を無限大に。</title>
+<meta name="description" content="株式会社ECHOOZは、生成AI活用支援・Webメディア運営・AI×Webビジネスコンサルを通じて、あなたの“自走できる力”を育みます。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F8FC;
+  --bg2:#EEF2F9;
+  --ink:#1C3242;
+  --ink-soft:#48606F;
+  --muted:#8CA0AD;
+  --line:rgba(28,50,66,.1);
+  --gold-1:#F7C95F;
+  --gold-2:#EFAE3C;
+  --white:#FFFFFF;
+  --sans:"Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;
+  --en:"Outfit","Noto Sans JP",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);font-weight:300;
+  background:var(--bg);color:var(--ink);
+  line-height:2.1;letter-spacing:.06em;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--gold-1);color:var(--ink)}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1140px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+
+/* ---------- header ---------- */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  transition:background .4s,box-shadow .4s;
+}
+header.scrolled{
+  background:rgba(246,248,252,.85);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  box-shadow:0 1px 0 var(--line);
+}
+.header-inner{
+  max-width:1280px;margin:0 auto;
+  padding:20px clamp(20px,4vw,48px);
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+}
+.brand{
+  font-family:var(--en);font-weight:500;font-size:19px;letter-spacing:.24em;
+  display:flex;align-items:center;gap:11px;
+}
+.brand .mark{
+  width:22px;height:22px;border-radius:50%;flex:none;
+  background:radial-gradient(circle at 32% 30%,#fff 0%,#DCE6F5 40%,#B8C9E4 100%);
+  box-shadow:inset 0 0 0 1px rgba(28,50,66,.12), 0 2px 6px rgba(28,50,66,.12);
+}
+nav.gnav{display:flex;align-items:center;gap:clamp(18px,3vw,34px)}
+nav.gnav a.nlink{
+  font-size:13.5px;font-weight:400;letter-spacing:.1em;position:relative;padding:4px 0;color:var(--ink-soft);
+  transition:color .3s;
+}
+nav.gnav a.nlink:hover{color:var(--ink)}
+.btn-nav{
+  font-size:13px;font-weight:500;letter-spacing:.1em;
+  background:var(--ink);color:#fff;
+  padding:11px 26px;border-radius:999px;
+  transition:opacity .3s,transform .3s;
+}
+.btn-nav:hover{opacity:.85;transform:translateY(-1px)}
+
+/* ---------- hero ---------- */
+.hero{
+  position:relative;min-height:100svh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;overflow:hidden;
+  padding:120px 20px 80px;
+}
+.hero-title{
+  font-weight:300;
+  font-size:clamp(24px,4.6vw,58px);
+  letter-spacing:.14em;line-height:1.9;
+  color:var(--ink);
+}
+@media (max-width:720px){
+  .hero-title{font-size:clamp(21px,6.2vw,30px);letter-spacing:.1em}
+  .hero{justify-content:flex-start;padding-top:110px;min-height:0}
+  .orb{width:clamp(180px,52vw,240px);height:clamp(180px,52vw,240px)}
+  .hero-scroll{display:none}
+}
+.hero-title .thin{font-weight:300}
+.orb{
+  position:relative;flex:none;
+  width:clamp(220px,28vw,360px);height:clamp(220px,28vw,360px);
+  margin:clamp(28px,4.5vh,56px) auto;
+  animation:float 7s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+.orb .core{
+  position:absolute;inset:0;border-radius:47% 53% 50% 50%/52% 46% 54% 48%;
+  background:
+    radial-gradient(circle at 30% 25%,rgba(255,255,255,.95) 0%,rgba(255,255,255,0) 34%),
+    radial-gradient(circle at 72% 78%,rgba(184,201,228,.55) 0%,rgba(184,201,228,0) 42%),
+    radial-gradient(circle at 60% 30%,rgba(214,226,244,.8) 0%,rgba(230,238,250,.35) 60%,rgba(238,244,252,.15) 100%);
+  box-shadow:
+    inset 0 2px 18px rgba(255,255,255,.9),
+    inset 0 -18px 40px rgba(150,172,205,.35),
+    inset 14px 0 34px rgba(255,255,255,.5),
+    0 30px 60px rgba(28,50,66,.12);
+  animation:morph 12s ease-in-out infinite;
+}
+@keyframes morph{
+  0%,100%{border-radius:47% 53% 50% 50%/52% 46% 54% 48%}
+  33%{border-radius:53% 47% 46% 54%/46% 54% 48% 52%}
+  66%{border-radius:50% 50% 55% 45%/54% 48% 52% 46%}
+}
+.orb .hl{
+  position:absolute;left:18%;top:14%;width:26%;height:14%;
+  border-radius:50%;background:rgba(255,255,255,.85);filter:blur(6px);
+  transform:rotate(-24deg);
+}
+.orb .hl2{
+  position:absolute;right:16%;bottom:20%;width:18%;height:10%;
+  border-radius:50%;background:rgba(255,255,255,.5);filter:blur(8px);
+  transform:rotate(18deg);
+}
+.hero-lead{
+  font-size:clamp(14px,1.35vw,16.5px);font-weight:300;
+  color:var(--ink-soft);letter-spacing:.1em;line-height:2.4;
+}
+.hero-cta{margin-top:clamp(26px,4vh,44px);display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn-gold{
+  font-size:13.5px;font-weight:500;letter-spacing:.12em;color:var(--ink);
+  background:linear-gradient(135deg,var(--gold-1),var(--gold-2));
+  padding:15px 40px;border-radius:999px;
+  box-shadow:0 10px 26px rgba(239,174,60,.35);
+  transition:transform .3s,box-shadow .3s;
+}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(239,174,60,.45)}
+.btn-quiet{
+  font-size:13.5px;font-weight:400;letter-spacing:.12em;color:var(--ink-soft);
+  padding:15px 34px;border-radius:999px;border:1px solid rgba(28,50,66,.25);
+  transition:border-color .3s,color .3s,background .3s;
+}
+.btn-quiet:hover{border-color:var(--ink);color:var(--ink);background:rgba(255,255,255,.6)}
+.hero-scroll{
+  position:absolute;bottom:26px;left:50%;transform:translateX(-50%);
+  font-family:var(--en);font-weight:300;font-size:10.5px;letter-spacing:.4em;color:var(--muted);
+}
+@media (max-height:1020px){.hero-scroll{display:none}}
+.hero-scroll::after{
+  content:"";display:block;width:1px;height:44px;background:var(--muted);margin:12px auto 0;
+  animation:drip 2.2s cubic-bezier(.7,0,.3,1) infinite;
+}
+@keyframes drip{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ---------- section base ---------- */
+.sec{padding:clamp(90px,13vw,170px) 0;position:relative}
+.sec-label{
+  font-family:var(--en);font-weight:200;
+  font-size:clamp(34px,4.6vw,58px);letter-spacing:.1em;color:var(--ink);
+  text-align:center;line-height:1.4;
+}
+.sec-sub{
+  text-align:center;font-size:13px;color:var(--muted);letter-spacing:.28em;margin-top:10px;
+  font-weight:400;
+}
+.sec-head{margin-bottom:clamp(50px,7vw,90px)}
+
+/* ---------- services ---------- */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,30px)}
+.svc-card{
+  background:var(--white);border-radius:22px;
+  padding:clamp(30px,3.2vw,44px) clamp(24px,2.6vw,36px);
+  box-shadow:0 2px 6px rgba(28,50,66,.04),0 18px 46px rgba(28,50,66,.07);
+  display:flex;flex-direction:column;gap:18px;
+  transition:transform .4s,box-shadow .4s;
+}
+.svc-card:hover{transform:translateY(-6px);box-shadow:0 4px 10px rgba(28,50,66,.05),0 30px 60px rgba(28,50,66,.11)}
+.svc-num{
+  font-family:var(--en);font-weight:300;font-size:13px;letter-spacing:.3em;color:var(--muted);
+}
+.svc-icon{
+  width:52px;height:52px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle at 32% 30%,#fff 0%,#E4EBF6 55%,#CBD8EC 100%);
+  box-shadow:inset 0 0 0 1px rgba(28,50,66,.08),0 4px 10px rgba(28,50,66,.08);
+}
+.svc-icon svg{width:22px;height:22px;stroke:var(--ink);stroke-width:1.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.svc-name{font-size:19px;font-weight:500;letter-spacing:.08em;line-height:1.7}
+.svc-name small{
+  display:block;font-family:var(--en);font-weight:300;font-size:10.5px;
+  letter-spacing:.26em;color:var(--muted);margin-top:6px;
+}
+.svc-body{font-size:13.8px;color:var(--ink-soft);font-weight:300;line-height:2.15;flex:1}
+.svc-tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{
+  font-size:11px;font-weight:400;letter-spacing:.1em;color:var(--ink-soft);
+  background:var(--bg);border-radius:999px;padding:5px 14px;
+}
+
+/* ---------- message ---------- */
+.message{background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 50%,var(--bg) 100%)}
+.msg-quote{
+  text-align:center;
+  font-size:clamp(22px,3.2vw,36px);font-weight:300;letter-spacing:.14em;line-height:2.2;
+  color:var(--ink);
+}
+.msg-body{
+  max-width:600px;margin:clamp(30px,4vw,48px) auto 0;text-align:center;
+  font-size:14.5px;color:var(--ink-soft);font-weight:300;line-height:2.5;
+}
+.msg-body p+p{margin-top:1.6em}
+.msg-sign{
+  margin-top:clamp(36px,5vw,56px);display:flex;flex-direction:column;align-items:center;gap:10px;
+}
+.msg-sign .role{font-size:11.5px;letter-spacing:.3em;color:var(--muted)}
+.msg-sign .name{font-size:21px;font-weight:500;letter-spacing:.3em}
+
+/* ---------- company ---------- */
+dl.company{
+  max-width:760px;margin:0 auto;
+  background:var(--white);border-radius:24px;
+  padding:clamp(16px,2.5vw,28px) clamp(24px,4vw,56px);
+  box-shadow:0 2px 6px rgba(28,50,66,.04),0 18px 46px rgba(28,50,66,.07);
+}
+dl.company .row{
+  display:grid;grid-template-columns:160px 1fr;gap:18px;
+  padding:20px 4px;border-bottom:1px solid var(--line);
+}
+dl.company .row:last-child{border-bottom:none}
+dl.company dt{
+  font-family:var(--en);font-weight:400;font-size:11px;letter-spacing:.26em;color:var(--muted);
+  padding-top:5px;
+}
+dl.company dd{font-size:14.5px;font-weight:400;letter-spacing:.04em}
+dl.company dd .sub{display:block;font-size:12.5px;color:var(--muted);font-weight:300}
+dl.company dd a{border-bottom:1px solid rgba(28,50,66,.3);transition:color .3s,border-color .3s}
+dl.company dd a:hover{color:var(--gold-2);border-color:var(--gold-2)}
+
+/* ---------- contact ---------- */
+.contact{text-align:center;overflow:hidden;position:relative}
+.contact .orb-bg{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:640px;height:640px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(255,255,255,.9) 0%,rgba(246,248,252,0) 62%);
+}
+.contact-inner{position:relative}
+.contact h2{
+  font-size:clamp(24px,3.6vw,42px);font-weight:300;letter-spacing:.16em;line-height:2;
+}
+.contact-lead{margin-top:18px;font-size:14px;color:var(--ink-soft);font-weight:300}
+.contact-cta{margin-top:40px;display:flex;justify-content:center}
+.contact-alt{
+  margin-top:36px;display:flex;justify-content:center;gap:clamp(20px,4vw,48px);flex-wrap:wrap;
+  font-size:13px;color:var(--ink-soft);
+}
+.contact-alt a{
+  display:inline-flex;gap:10px;align-items:center;
+  border-bottom:1px solid rgba(28,50,66,.25);padding-bottom:3px;
+  transition:color .3s,border-color .3s;font-weight:400;
+}
+.contact-alt a:hover{color:var(--gold-2);border-color:var(--gold-2)}
+.contact-alt .lbl{font-family:var(--en);font-size:10px;letter-spacing:.3em;color:var(--muted)}
+
+/* ---------- footer ---------- */
+footer{
+  border-top:1px solid var(--line);
+  padding:52px 0 40px;
+}
+.foot-inner{display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center}
+.foot-brand{font-family:var(--en);font-weight:500;font-size:17px;letter-spacing:.26em;display:flex;align-items:center;gap:10px}
+.foot-brand .mark{
+  width:16px;height:16px;border-radius:50%;
+  background:radial-gradient(circle at 32% 30%,#fff 0%,#DCE6F5 40%,#B8C9E4 100%);
+  box-shadow:inset 0 0 0 1px rgba(28,50,66,.12);
+}
+.foot-links{display:flex;gap:clamp(16px,3vw,32px);flex-wrap:wrap;justify-content:center;font-size:12.5px;color:var(--ink-soft)}
+.foot-links a{transition:color .3s}
+.foot-links a:hover{color:var(--ink)}
+.foot-copy{font-family:var(--en);font-weight:300;font-size:11px;letter-spacing:.14em;color:var(--muted)}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(24px);transition:opacity 1s cubic-bezier(.2,.6,.2,1),transform 1s cubic-bezier(.2,.6,.2,1)}
+.rv.on{opacity:1;transform:none}
+.rv-d1{transition-delay:.1s}.rv-d2{transition-delay:.2s}.rv-d3{transition-delay:.3s}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .rv{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+
+/* ---------- mobile ---------- */
+@media (max-width:900px){
+  .svc-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto}
+}
+@media (max-width:720px){
+  nav.gnav a.nlink{display:none}
+  dl.company .row{grid-template-columns:1fr;gap:2px;padding:16px 4px}
+}
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="header-inner">
+    <a class="brand" href="#top" aria-label="ECHOOZ トップへ"><span class="mark" aria-hidden="true"></span>ECHOOZ</a>
+    <nav class="gnav" aria-label="グローバルナビゲーション">
+      <a class="nlink" href="#services">事業内容</a>
+      <a class="nlink" href="#message">代表メッセージ</a>
+      <a class="nlink" href="#company">会社概要</a>
+      <a class="btn-nav" href="https://echooz.jp/contact/">お問い合わせ</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <h1 class="hero-title rv on">AIとWebで、<br>あなたの可能性を無限大に。</h1>
+    <div class="orb rv on rv-d1" aria-hidden="true">
+      <div class="core"></div>
+      <div class="hl"></div>
+      <div class="hl2"></div>
+    </div>
+    <p class="hero-lead rv on rv-d2">
+      生成AI活用支援・Webメディア運営・AI×Webビジネスコンサルを通じて、<br>
+      個人にも企業にも、“自走できる力”を育みます。
+    </p>
+    <div class="hero-cta rv on rv-d3">
+      <a class="btn-gold" href="#services">サービスを詳しく知る</a>
+      <a class="btn-quiet" href="https://echooz.jp/contact/">お問い合わせ</a>
+    </div>
+    <p class="hero-scroll" aria-hidden="true">SCROLL</p>
+  </section>
+
+  <!-- ================= SERVICES ================= -->
+  <section id="services" class="sec">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <h2 class="sec-label">Services</h2>
+        <p class="sec-sub">事業内容 — 3つのコアサービス</p>
+      </div>
+      <div class="svc-grid">
+        <article class="svc-card rv">
+          <p class="svc-num">01</p>
+          <div class="svc-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 21h8"/></svg>
+          </div>
+          <h3 class="svc-name">Webメディア運営<small>MEDIA MANAGEMENT</small></h3>
+          <p class="svc-body">ブログ・Instagram・YouTubeなどの各種メディア運営を行っています。メディアごとに最適な戦略や収益モデルを構築し、収益化のノウハウを日頃から開拓・アップデートしています。</p>
+          <div class="svc-tags"><span class="tag">Blog</span><span class="tag">Instagram</span><span class="tag">YouTube</span></div>
+        </article>
+        <article class="svc-card rv rv-d1">
+          <p class="svc-num">02</p>
+          <div class="svc-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/><circle cx="12" cy="12" r="3.6"/></svg>
+          </div>
+          <h3 class="svc-name">企業向け 生成AI活用支援<small>GENERATIVE AI SUPPORT</small></h3>
+          <p class="svc-body">ChatGPTをはじめとする生成AIを活用し、業務効率化やコンテンツ自動化をサポートします。実践的なプロンプト設計から、活用スキルの指導まで幅広く対応可能です。</p>
+          <div class="svc-tags"><span class="tag">ChatGPT</span><span class="tag">業務効率化</span><span class="tag">プロンプト設計</span></div>
+        </article>
+        <article class="svc-card rv rv-d2">
+          <p class="svc-num">03</p>
+          <div class="svc-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 19V10M10 19V5M16 19v-6M21 19H3"/><path d="M16 8l3-3 2 2"/></svg>
+          </div>
+          <h3 class="svc-name">AI×Webビジネスコンサル<small>BUSINESS CONSULTING</small></h3>
+          <p class="svc-body">AIとWebを組み合わせて収益化させるための事業の立ち上げ・仕組み化を総合的に支援。個人にも企業にも“自走できる力”を提供します。</p>
+          <div class="svc-tags"><span class="tag">事業立ち上げ</span><span class="tag">収益化</span><span class="tag">仕組み化</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MESSAGE ================= -->
+  <section id="message" class="sec message">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <h2 class="sec-label">Message</h2>
+        <p class="sec-sub">代表メッセージ</p>
+      </div>
+      <p class="msg-quote rv">お客様も社員も、<br>幸せにできる会社でありたい。</p>
+      <div class="msg-body rv rv-d1">
+        <p>はじめまして、株式会社ECHOOZの関 諒也です。</p>
+        <p>副業を始めたばかりの個人も、新しい挑戦を始めた企業も。<br>ECHOOZは、自分の足で一歩を踏み出せる力を育む企業です。</p>
+        <p>あなたの理想に、WebとAIで寄り添います。</p>
+      </div>
+      <div class="msg-sign rv rv-d2">
+        <p class="role">代表取締役</p>
+        <p class="name">関 諒也</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= COMPANY ================= -->
+  <section id="company" class="sec">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <h2 class="sec-label">Company</h2>
+        <p class="sec-sub">会社概要</p>
+      </div>
+      <dl class="company rv">
+        <div class="row"><dt>COMPANY</dt><dd>株式会社ECHOOZ</dd></div>
+        <div class="row"><dt>CEO</dt><dd>代表取締役　関 諒也<span class="sub">セキ リョウヤ</span></dd></div>
+        <div class="row"><dt>FOUNDED</dt><dd>2023年11月2日</dd></div>
+        <div class="row"><dt>ADDRESS</dt><dd>〒160-0023<br>東京都新宿区西新宿三丁目3番13号 西新宿水間ビル6階<span class="sub">新宿駅 徒歩8分</span></dd></div>
+        <div class="row"><dt>TEL</dt><dd><a href="tel:080-7610-1274">080-7610-1274</a></dd></div>
+        <div class="row"><dt>MAIL</dt><dd><a href="mailto:ryoyatennis95s@gmail.com">ryoyatennis95s@gmail.com</a></dd></div>
+        <div class="row"><dt>WEB</dt><dd><a href="https://echooz.jp">https://echooz.jp</a></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section id="contact" class="sec contact">
+    <div class="orb-bg" aria-hidden="true"></div>
+    <div class="wrap contact-inner">
+      <div class="sec-head rv">
+        <h2 class="sec-label">Contact</h2>
+        <p class="sec-sub">お問い合わせ</p>
+      </div>
+      <h2 class="rv rv-d1" style="font-size:clamp(20px,2.8vw,32px);font-weight:300;letter-spacing:.14em;line-height:2.1">まずは、気軽に話してみませんか。</h2>
+      <p class="contact-lead rv rv-d2">サービスに関するご質問やご相談など、お気軽にお問い合わせください。</p>
+      <div class="contact-cta rv rv-d2">
+        <a class="btn-gold" href="https://echooz.jp/contact/">お問い合わせフォームへ</a>
+      </div>
+      <div class="contact-alt rv rv-d3">
+        <a href="mailto:ryoyatennis95s@gmail.com"><span class="lbl">MAIL</span>ryoyatennis95s@gmail.com</a>
+        <a href="tel:080-7610-1274"><span class="lbl">TEL</span>080-7610-1274</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <p class="foot-brand"><span class="mark" aria-hidden="true"></span>ECHOOZ</p>
+    <nav class="foot-links" aria-label="フッターナビゲーション">
+      <a href="#services">事業内容</a>
+      <a href="#message">代表メッセージ</a>
+      <a href="#company">会社概要</a>
+      <a href="https://echooz.jp/contact/">お問い合わせ</a>
+      <a href="https://echooz.jp/tokuteisho/">特定商取引法に基づく表記</a>
+    </nav>
+    <p class="foot-copy">© 2023–2026 ECHOOZ Inc. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script>
+const header = document.getElementById('header');
+const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 40);
+window.addEventListener('scroll', onScroll, {passive:true});
+onScroll();
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+  });
+}, {threshold: .12, rootMargin: '0px 0px -40px 0px'});
+document.querySelectorAll('.rv:not(.on)').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>

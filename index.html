@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ECHOOZ HP リニューアル案 プレビュー</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  min-height:100svh;display:flex;align-items:center;justify-content:center;
+  background:#101216;color:#EDEAE2;font-family:"Noto Sans JP",sans-serif;
+  padding:40px 20px;line-height:1.9;
+}
+.box{max-width:680px;width:100%}
+.k{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.3em;color:#8d8778}
+h1{font-size:clamp(22px,4.6vw,32px);font-weight:900;margin:10px 0 8px}
+p.d{font-size:13.5px;color:#a9a396;margin-bottom:32px}
+.cards{display:grid;gap:16px}
+a.card{
+  display:block;border:1px solid #2c2e33;border-radius:16px;padding:22px 26px;
+  color:inherit;text-decoration:none;background:#171a1f;
+  transition:border-color .25s,transform .25s;
+}
+a.card:hover{border-color:#6b7280;transform:translateY(-2px)}
+a.card .tag{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.22em;color:#8d8778}
+a.card h2{font-size:19px;font-weight:700;margin:6px 0 4px}
+a.card p{font-size:13px;color:#a9a396}
+a.card.a h2{color:#DCE6F5}
+a.card.b h2{color:#9BA0F8}
+</style>
+</head>
+<body>
+<div class="box">
+  <p class="k">ECHOOZ — WEBSITE RENEWAL PREVIEW</p>
+  <h1>HPリニューアル案 2バージョン</h1>
+  <p class="d">どちらも同じ内容（事業内容・代表メッセージ・会社概要・お問い合わせ）。テイストだけ違います。</p>
+  <div class="cards">
+    <a class="card a" href="./a.html">
+      <p class="tag">VERSION A</p>
+      <h2>Algomatic風 — 静けさ×余白</h2>
+      <p>薄いラベンダーホワイト×紺。細字・中央寄せ・ガラスの球体・金色ボタン。</p>
+    </a>
+    <a class="card b" href="./b.html">
+      <p class="tag">VERSION B</p>
+      <h2>LayerX風 — 極太タイポ×青紫</h2>
+      <p>白×濃紺。特大ゴシックコピー・青紫のボタン・SaaSらしいキリッとした構成。</p>
+    </a>
+  </div>
+</div>
+</body>
+</html>
